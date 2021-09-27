@@ -1,9 +1,14 @@
 # OS-Dockerfile
+
 a prettier and enhanced docker image in ZJU OS course
 
 这是基于OS课程提供的docker image的增强版，**目前提供了完美的zsh以及大量插件，gef-leagcy和pip2，后续有衬手的工具会继续向里面添加**
 
 
+
+### 写在前面：
+
+请确保您仔细阅读过readme后再继续，否则可能出现奇怪的bug！
 
 ### 使用效果
 
@@ -17,20 +22,14 @@ a prettier and enhanced docker image in ZJU OS course
 
 
 
-**注意**我为了方便，直接将本机的antigen下载下来的插件打包成.tar.gz，如果你懒得翻墙下载，请使用如下命令解包后再继续
-
-~~~bash
-cd /path/to/OS-Dockerfile
-tar -xzvf antigen.tar.gz
-~~~
-
-
+**注意！：**我为了方便，zsh使用的是antigen包管理器来下载插件，但是该管理器缺点是只会到github上去搜索插件，这就导致如果有些同学没有开代理就会一直卡在zsh的loading界面，所以我把用到的插件打包成`antigen.tar.gz`，直接解压缩就可以使用
 
 ### 如何build?
 
 ~~~bash
 git clone https://github.com/cxz66666/OS-Dockerfile
 cd /path/to/OS-Dockerfile
+tar -xzvf antigen.tar.gz #解压插件包
 docker build -t oslab-zsh:2020 .  #这里的oslab-zsh和2020 你可以切换成你喜欢的tag,比如oslab-enhance:2021
 ~~~
 
@@ -40,8 +39,15 @@ docker build -t oslab-zsh:2020 .  #这里的oslab-zsh和2020 你可以切换成�
 
 ~~~dockerfile
 #假设你上一步中 -t后面的tag为oslab-zsh:2020，宿主机需要挂载的目录为/app/os/lab0，镜像内目录为/home/os/lab0 那么命令为
-
-docker run -it -v /app/os/lab0:/home/os/lab0 -u root --name="oslab" --network host oslab-zsh:2020 zsh
+#一些参数的解释
+# -i进入交互模式，-t分配一个伪终端，两者常一起使用-it
+# -v 挂载目录，可以理解为共享文件夹，宿主机和镜像的某个文件夹是关联起来的， 比如我本机文件夹为/app/os/lab0 容器内要挂载的是/home/oslab/lab0，则为/app/os/lab0:/home/oslab/lab0
+# --name 指定容器名
+# --network host指定容器使用宿主机的网络， 
+# oslab-zsh:2020  使用的镜像名字
+# zsh 进入的shell
+# -u root 使用的是root用户
+docker run -it -v /app/os/lab0:/home/oslab/lab0 -u root --name="oslab" --network host oslab-zsh:2020 zsh
 
 ~~~
 
@@ -61,7 +67,7 @@ docker run -it -v /app/os/lab0:/home/os/lab0 -u root --name="oslab" --network ho
 
 
 
-### 常见问题：
+###  常见问题：
 
 - 没有镜像oslab:2020 
 
@@ -82,5 +88,6 @@ docker run -it -v /app/os/lab0:/home/os/lab0 -u root --name="oslab" --network ho
 
   当然如果你使用`wsl`，事情就变得比较复杂了，我暂时没有找到合适的方法
 
-  
+- 我的图标显示错误，全是长方形框框：
 
+  这是字体的问题，我们使用的主题是powerline10k，你可以到[这里](https://github.com/romkatv/powerlevel10k/blob/master/README.md#meslo-nerd-font-patched-for-powerlevel10k)去研究
