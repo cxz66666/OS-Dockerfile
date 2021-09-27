@@ -670,7 +670,7 @@ antigen () {
           $url != /* &&
           $url != *github.com:*/*
           ]]; then
-    url="https://github.com/${url%.git}.git"
+    url="https://github.com.cnpmjs.org/${url%.git}.git"
   fi
   args[url]="$url"
 

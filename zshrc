@@ -6,8 +6,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 export PATH=$PATH:/opt/riscv/bin
-export hostip=$(cat /etc/resolv.conf |grep -oP '(?<=nameserver\ ).*')
-alias setss='export https_proxy="http://${hostip}:7890";export http_proxy="http://${hostip}:7890";'
 
 fastfile_var_prefix='@'
 source ~/.antigen.zsh
