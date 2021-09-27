@@ -17,6 +17,13 @@ a prettier and enhanced docker image in ZJU OS course
 
 
 
+**注意**我为了方便，直接将本机的antigen下载下来的插件打包成.tar.gz，如果你懒得翻墙下载，请使用如下命令解包后再继续
+
+~~~bash
+cd /path/to/OS-Dockerfile
+tar -xzvf antigen.tar.gz
+~~~
+
 
 
 ### 如何build?
