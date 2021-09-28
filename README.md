@@ -2,7 +2,7 @@
 
 a prettier and enhanced docker image in ZJU OS course
 
-这是基于OS课程提供的docker image的增强版，**目前提供了完美的zsh以及大量插件，gef-leagcy和pip2，后续有衬手的工具会继续向里面添加**
+这是基于OS课程提供的docker image的增强版，**目前提供了完美的zsh以及大量插件，gef-legacy和pip2，后续有衬手的工具会继续向里面添加**
 
 
 
@@ -22,7 +22,7 @@ a prettier and enhanced docker image in ZJU OS course
 
 
 
-**注意！：**我为了方便，zsh使用的是antigen包管理器来下载插件，同时该插件使用了github的镜像源站`https://github.com.cnpmjs.org`，但是可能会出现连接不问的情况，初次进入容器的同学可能需要一段时间加载各种插件，之后再进入即可秒进
+**注意**我为了方便，zsh使用的是antigen包管理器来下载插件，同时该插件使用了github的镜像源站`https://github.com.cnpmjs.org`，但是可能会出现连接不问的情况，初次进入容器的同学可能需要一段时间加载各种插件，之后再进入即可秒进
 
 
 
