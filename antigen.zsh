@@ -433,9 +433,9 @@ antigen () {
 
   # Pre-startup initializations.
   -antigen-set-default ANTIGEN_OMZ_REPO_URL \
-    https://github.com/robbyrussell/oh-my-zsh.git
+    https://github.com.cnpmjs.org/robbyrussell/oh-my-zsh.git
   -antigen-set-default ANTIGEN_PREZTO_REPO_URL \
-    https://github.com/sorin-ionescu/prezto.git
+    https://github.com.cnpmjs.org/sorin-ionescu/prezto.git
   -antigen-set-default ANTIGEN_DEFAULT_REPO_URL $ANTIGEN_OMZ_REPO_URL
 
   # Default Antigen directory.

@@ -22,7 +22,7 @@ a prettier and enhanced docker image in ZJU OS course
 
 
 
-**注意**我为了方便，zsh使用的是antigen包管理器来下载插件，同时该插件使用了github的镜像源站`https://github.com.cnpmjs.org`，但是可能会出现连接不问的情况，初次进入容器的同学可能需要一段时间加载各种插件，之后再进入即可秒进
+**注意**我为了方便，zsh使用的是antigen包管理器来下载插件，同时该插件使用了github的镜像源站`https://github.com.cnpmjs.org`，但是可能会出现连接不问的情况，初次进入容器的同学可能需要一段时间（约5s）加载各种插件，之后再进入即可秒进
 
 
 
@@ -38,6 +38,11 @@ vim Dockerfile
 # FROM 修改为你需要创建的源
 # ENV user 改为你需要的用户 root 或其他
 # base 修改为该用户的根目录， root 为/root 其他为/home/{name}
+
+# 例如
+# FROM oslab:2021
+# ENV user oslab
+# base /home/oslab
 ~~~
 
 
@@ -75,7 +80,7 @@ docker run -it -v /app/os/lab0:/home/oslab/lab0 -u root --name="oslab" --network
 
 ### 工作原理
 
-其实就是简单的把本地文件复制到容器内部。有一点基础的童鞋应该都能看出来没啥难度。。
+其实就是简单的把本地文件复制到容器内部。有一点基础的童鞋应该都能看出来没啥难度。。同时对文件进行了一些修改，换了些源，同时加了一些美观的配置
 
 
 
@@ -101,6 +106,7 @@ docker run -it -v /app/os/lab0:/home/oslab/lab0 -u root --name="oslab" --network
 
   ~~~bash
   export http_proxy=http://xxxxxx #你懂的
+  # export http_proxt=http://127.0.0.1:7890 clash
   export https_proxy=https://xxxxxx #你懂的
   ~~~
 
@@ -108,11 +114,11 @@ docker run -it -v /app/os/lab0:/home/oslab/lab0 -u root --name="oslab" --network
 
 - **我的图标显示错误，全是长方形框框：**
 
-  这是字体的问题，我们使用的主题是powerline10k，你可以到[这里](https://github.com/romkatv/powerlevel10k/blob/master/README.md#meslo-nerd-font-patched-for-powerlevel10k)去研究，简单的说就是字体不对，wsl用户可以使用window terminal中的字体设置，linux用户请设置terminal的字体
+  这是字体的问题，我们使用的主题是powerlevel10k，你可以到[这里](https://github.com/romkatv/powerlevel10k/blob/master/README.md#meslo-nerd-font-patched-for-powerlevel10k)去研究，简单的说就是字体不对，wsl用户可以使用window terminal中的字体设置，linux用户请设置terminal的字体
   
 - **这个主题不够好看**
 
-  这里使用的主题是`powerline 10k`，你可以通过命令`p10k configure` 根据提示配置，如果你有更好看的主题，请修改本文件夹下的`zshrc`中
+  这里使用的主题是`powerlevel 10k`，你可以通过命令`p10k configure` 根据提示配置，如果你有更好看的主题，请修改本文件夹下的`zshrc`中
 
   ~~~bash
   antigen theme romkatv/powerlevel10k #修改为你喜欢的主题
