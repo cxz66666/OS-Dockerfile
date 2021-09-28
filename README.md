@@ -22,14 +22,32 @@ a prettier and enhanced docker image in ZJU OS course
 
 
 
-**注意！：**我为了方便，zsh使用的是antigen包管理器来下载插件，但是该管理器缺点是只会到github上去搜索插件，这就导致如果有些同学没有开代理就会一直卡在zsh的loading界面，所以我把用到的插件打包成`antigen.tar.gz`，直接解压缩就可以使用
+**注意！：**我为了方便，zsh使用的是antigen包管理器来下载插件，同时该插件使用了github的镜像源站`https://github.com.cnpmjs.org`，但是可能会出现连接不问的情况，初次进入容器的同学可能需要一段时间加载各种插件，之后再进入即可秒进
 
-### 如何build?
+
+
+### 修改Dockerfile
 
 ~~~bash
 git clone https://github.com/cxz66666/OS-Dockerfile
 cd /path/to/OS-Dockerfile
-tar -xzvf antigen.tar.gz #解压插件包
+
+vim Dockerfile
+
+#请根据注释着重修改 前三个变量
+# FROM 修改为你需要创建的源
+# ENV user 改为你需要的用户 root 或其他
+# base 修改为该用户的根目录， root 为/root 其他为/home/{name}
+~~~
+
+
+
+
+
+### 如何build?
+
+~~~bash
+
 docker build -t oslab-zsh:2020 .  #这里的oslab-zsh和2020 你可以切换成你喜欢的tag,比如oslab-enhance:2021
 ~~~
 
@@ -69,7 +87,7 @@ docker run -it -v /app/os/lab0:/home/oslab/lab0 -u root --name="oslab" --network
 
 ###  常见问题：
 
-- 没有镜像oslab:2020 
+- **没有镜像oslab:2020** 
 
   请确保你按照老师的要求导入了oslab image，我在导入的时候打了个tag为2020，如果你没有打或者为lastest，请修改`Dockerfile`第一行
 
@@ -77,7 +95,7 @@ docker run -it -v /app/os/lab0:/home/oslab/lab0 -u root --name="oslab" --network
   FROM oslab:lastest  #或者其他你设置的tag
   ~~~
 
-- 如何在容器中使用代理
+- **如何在容器中使用代理**
 
   首先你要在`docker run`中设置`--net=host`，然后
 
@@ -88,6 +106,16 @@ docker run -it -v /app/os/lab0:/home/oslab/lab0 -u root --name="oslab" --network
 
   当然如果你使用`wsl`，事情就变得比较复杂了，我暂时没有找到合适的方法
 
-- 我的图标显示错误，全是长方形框框：
+- **我的图标显示错误，全是长方形框框：**
 
-  这是字体的问题，我们使用的主题是powerline10k，你可以到[这里](https://github.com/romkatv/powerlevel10k/blob/master/README.md#meslo-nerd-font-patched-for-powerlevel10k)去研究
+  这是字体的问题，我们使用的主题是powerline10k，你可以到[这里](https://github.com/romkatv/powerlevel10k/blob/master/README.md#meslo-nerd-font-patched-for-powerlevel10k)去研究，简单的说就是字体不对，wsl用户可以使用window terminal中的字体设置，linux用户请设置terminal的字体
+  
+- **这个主题不够好看**
+
+  这里使用的主题是`powerline 10k`，你可以通过命令`p10k configure` 根据提示配置，如果你有更好看的主题，请修改本文件夹下的`zshrc`中
+
+  ~~~bash
+  antigen theme romkatv/powerlevel10k #修改为你喜欢的主题
+  ~~~
+
+  
