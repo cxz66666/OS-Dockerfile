@@ -433,9 +433,9 @@ antigen () {
 
   # Pre-startup initializations.
   -antigen-set-default ANTIGEN_OMZ_REPO_URL \
-    https://github.com.cnpmjs.org/robbyrussell/oh-my-zsh.git
+    https://hub.fastgit.org/robbyrussell/oh-my-zsh.git
   -antigen-set-default ANTIGEN_PREZTO_REPO_URL \
-    https://github.com.cnpmjs.org/sorin-ionescu/prezto.git
+    https://hub.fastgit.org/sorin-ionescu/prezto.git
   -antigen-set-default ANTIGEN_DEFAULT_REPO_URL $ANTIGEN_OMZ_REPO_URL
 
   # Default Antigen directory.
@@ -670,7 +670,7 @@ antigen () {
           $url != /* &&
           $url != *github.com:*/*
           ]]; then
-    url="https://github.com.cnpmjs.org/${url%.git}.git"
+    url="https://hub.fastgit.org/${url%.git}.git"
   fi
   args[url]="$url"
 
